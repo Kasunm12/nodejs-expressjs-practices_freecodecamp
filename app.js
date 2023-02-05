@@ -19,7 +19,7 @@
 //     }
 //     res.end(`
 //     <h1>Oops!</h1>
-    
+
 //     <p>We can't seem to find the page you are looking fpr</p>
 //     <a href="/">Back Home</a>
 //     `)
@@ -29,11 +29,64 @@
 
 // server.listen(5000)
 
-const _= require('lodash');
-const items = [1,[2,[3,[4]]]]
-const newItems =_.flattenDeep(items)
-console.log(newItems);
-console.log('kasun weerasekara');
+// const _= require('lodash');
+// const items = [1,[2,[3,[4]]]]
+// const newItems =_.flattenDeep(items)
+// console.log(newItems);
+// console.log('kasun weerasekara');
+
+// 
+const { readFile, writeFile } = require('fs').promises
+// const util = require('util')
+// const readFilePromise = util.promisify(readFile)
+// const writeFilePromise = util.promisify(writeFile)
+
+const start = async () => {
+  try {
+    const first = await readFile('./content/first.txt', 'utf8')
+    const second = await readFile('./content/second.txt', 'utf8')
+    await writeFile(
+      './content/result-mind-grenade.txt',
+      `THIS IS AWESOME : ${first} ${second}`,
+      { flag: 'a' }
+    )
+    console.log(first, second)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+start()
+
+// const getText = (path) => {
+//   return new Promise((resolve, reject) => {
+//     readFile(path, 'utf8', (err, data) => {
+//       if (err) {
+//         reject(err)
+//       } else {
+//         resolve(data)
+//       }
+//     })
+//   })
+// }
+// getText('./content/first.txt')
+//   .then((result) => console.log(result))
+//   .catch((err) => console.log(err))
+
+
+// const { readFile, writeFile } = require('fs')
+
+// console.log('started a first task')
+// // CHECK FILE PATH!!!!
+// readFile('./content/first.txt', 'utf8', (err, result) => {
+//   if (err) {
+//     console.log(err)
+//     return
+//   }
+//   console.log(result)
+//   console.log('completed first task')
+// })
+// console.log('starting next task')
 
 // const first = readFileSync('./content/first.txt','utf8')
 // const second = readFileSync('./content/second.txt','utf8')
